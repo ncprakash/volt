@@ -5,7 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="en" className="h-full">
         <body className="antialiased flex flex-col min-h-full bg-gray-100 m-0 p-0">
           {/* Using flex-col on body so main can grow correctly */}
