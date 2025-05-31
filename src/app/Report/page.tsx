@@ -329,7 +329,7 @@ export default function ReportsPage() {
                   </div>
                   <div className="mt-6 p-3 bg-emerald-50 rounded-lg">
                     <p className="text-sm text-emerald-800">
-                      You're on track to save <span className="font-semibold">~$28</span> this month!
+                      You re on track to save <span className="font-semibold">~$28</span> this month!
                     </p>
                   </div>
                 </div>

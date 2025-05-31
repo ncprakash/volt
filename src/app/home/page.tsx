@@ -29,7 +29,7 @@ ChartJS.register(
     Legend
 );
 
-const primaryColor = 'indigo-600';
+
 const textColor = 'gray-700';
 const cardBackgroundColor = 'white';
 const cardShadow = 'shadow-md';
@@ -62,61 +62,53 @@ const doughnutData = {
 };
 
 const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-        y: {
-            beginAtZero: true,
-            title: {
-                display: true,
-                text: 'Sales Volume',
-                color: textColor,
-            },
-            grid: {
-                borderColor: 'rgba(0, 0, 0, 0.05)', // Subtle grid lines
-            },
-        },
-        x: {
-            grid: {
-                display: false,
-            },
-            ticks: {
-                color: textColor,
-            },
-        },
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    y: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: "Y Axis Label",
+        color: "#333",
+      },
+      grid: {
+        borderColor: "#888",
+        color: "#ccc",
+        drawBorder: true,
+        drawTicks: true,
+      },
     },
-    plugins: {
-        legend: {
-            display: true,
-            position: 'bottom' as const,
-            labels: {
-                color: textColor,
-                usePointStyle: true,
-            },
-        },
-        title: {
-            display: true,
-            text: 'Monthly Sales Performance',
-            align: 'start' as const,
-            font: {
-                size: 18,
-                weight: 'semibold',
-            },
-            color: textColor,
-            padding: {
-                top: 10,
-                bottom: 20,
-            },
-        },
-        tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            titleColor: '#fff',
-            bodyColor: '#fff',
-            borderColor: primaryColor,
-            borderWidth: 1,
-        },
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: "#333",
+      },
     },
+  },
+  plugins: {
+    legend: {
+      position: "top" as const,  // valid values only
+      align: "center" as const,  // "start" | "center" | "end"
+      labels: {
+        color: "#333",
+        usePointStyle: true,
+        boxWidth: 8,
+      },
+    },
+    title: {
+      display: true,
+      text: "Line Chart Example",
+      font: {
+        size: 18,
+        weight: "bold" as const,
+      },
+    },
+  },
 };
+
 
 const doughnutOptions = {
     responsive: true,
@@ -137,7 +129,7 @@ const doughnutOptions = {
             align: 'start' as const,
             font: {
                 size: 18,
-                weight: 'semibold',
+                weight: 600,
             },
             color: textColor,
             padding: {
