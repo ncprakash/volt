@@ -1,5 +1,6 @@
 'use client';
 import { SignUp } from '@clerk/nextjs';
+import Link from 'next/link';
 
 export default function Page() {
   return (
@@ -8,7 +9,7 @@ export default function Page() {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Create an Account</h2>
         <SignUp />
         <p className="mt-4 text-sm text-gray-600 text-center">
-          Already have an account? <a href="/sign-in" className="text-blue-500 hover:underline">Sign in</a>
+          Already have an account? <Link href="/sign-in" className="text-blue-500 hover:underline">Sign in</Link>
         </p>
       </div>
     </div>
