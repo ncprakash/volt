@@ -12,6 +12,7 @@ import {
 } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+console.log("KEY:", process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
 export default function Home() {
   return (
