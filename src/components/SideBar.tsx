@@ -4,14 +4,24 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
 export default function SideBar() {
+
+  const pathname = usePathname();
   const { isLoaded, isSignedIn, user } = useUser();
+    console.log("User",user)
   const [isOpen, setIsOpen] = useState(false);
 
   if (!isLoaded) return <div className="p-4">Loading...</div>;
-
   if (!isSignedIn) return <div className="p-4">Please sign in</div>;
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Devices", href: "/Device" },
+    { label: "Report", href: "/Report" },
+    { label: "Setting", href: "/setting" },
+  ];
 
   return (
     <>
@@ -27,7 +37,7 @@ export default function SideBar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 max-h-full w-64 bg-white shadow-md z-40 transform
+           fixed top-0 left-0 max-h-full w-64 bg-white shadow-md z-40 transform
           transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:block
@@ -35,30 +45,33 @@ export default function SideBar() {
       >
         <div className="p-4 border-b">
           <h1 className="text-xl font-semibold text-gray-800">
-            Hello, {user.firstName} 👋
+            Hello, {user.username} 👋
           </h1>
         </div>
 
         <nav className="flex flex-col p-4 space-y-2">
-          <Link href="/" className="text-lg font-semibold hover:bg-gray-200 rounded p-2" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-          <Link href="/home" className="hover:bg-gray-200 rounded p-2" onClick={() => setIsOpen(false)}>
-            Dashboard
-          </Link>
-          <Link href="/Device" className="hover:bg-gray-200 rounded p-2" onClick={() => setIsOpen(false)}>
-            Device Page
-          </Link>
-          <Link href="/Report" className="hover:bg-gray-200 rounded p-2" onClick={() => setIsOpen(false)}>
-            Analysis
-          </Link>
-          <Link href="/setting" className="hover:bg-gray-200 rounded p-2" onClick={() => setIsOpen(false)}>
-            Settings
-          </Link>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-lg font-medium rounded p-2 transition-colors duration-200 ${
+                  isActive
+                    ? "bg-gray-800 text-white"
+                    : "text-gray-700 hover:bg-gray-200"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       </aside>
 
-      {/* Overlay to prevent interaction with the main content when the sidebar is open on mobile */}
+      {/* Mobile overlay */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -68,3 +81,4 @@ export default function SideBar() {
     </>
   );
 }
+
