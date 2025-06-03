@@ -1,20 +1,14 @@
-// app/layout.tsx or app/root-layout.tsx
-'use client'
-import "./globals.css";
-import { ClerkProvider } from '@clerk/nextjs';
+import './globals.css';
+import { ClerkProviderWithNavigation } from './clerk-provider';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProviderWithNavigation>
       <html lang="en" className="h-full">
         <body className="antialiased flex flex-col min-h-full bg-gray-100 m-0 p-0">
-          {/* Using flex-col on body so main can grow correctly */}
-          <main className="flex-0 p-0">
-            {children}
-          </main>
+          <main className="flex-0 p-0">{children}</main>
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkProviderWithNavigation>
   );
 }
-
