@@ -1,5 +1,5 @@
 // app/layout.tsx or app/root-layout.tsx
-
+'use client'
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
 
