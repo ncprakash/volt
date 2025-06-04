@@ -29,33 +29,34 @@ ChartJS.register(
     Legend
 );
 
-
 const textColor = 'gray-700';
 const cardBackgroundColor = 'white';
 const cardShadow = 'shadow-md';
 const borderRadius = 'rounded-lg';
 
+// Electricity consumption over 7 months in kWh (example data)
 const lineData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
     datasets: [
         {
-            label: 'Monthly Sales',
-            data: [22, 39, 23, 35, 18, 42, 28], // More realistic data
-            borderColor: `rgba(79, 70, 229, 1)`, // Indigo color
-            backgroundColor: `rgba(79, 70, 229, 0.1)`,
+            label: 'Electricity Consumption (kWh)',
+            data: [350, 320, 310, 280, 260, 230, 200],
+            borderColor: `rgba(34, 197, 94, 1)`, // Green color
+            backgroundColor: `rgba(34, 197, 94, 0.1)`,
             fill: true,
-            tension: 0.3, // Add some curve to the line
+            tension: 0.3,
         },
     ],
 };
 
+// Electricity cost savings by appliance category in dollars
 const doughnutData = {
-    labels: ['Electronics', 'Apparel', 'Books'],
+    labels: ['Lighting', 'Heating', 'Appliances'],
     datasets: [
         {
-            label: 'Product Categories',
-            data: [45, 30, 25],
-            backgroundColor: ['#6366F1', '#3B82F6', '#1D4ED8'], // Different shades of blue
+            label: 'Cost Savings ($)',
+            data: [120, 250, 100],
+            backgroundColor: ['#10B981', '#059669', '#047857'], // Different green shades
             hoverOffset: 4,
         },
     ],
@@ -69,7 +70,7 @@ const lineOptions = {
       beginAtZero: true,
       title: {
         display: true,
-        text: "Y Axis Label",
+        text: "kWh",
         color: "#333",
       },
       grid: {
@@ -90,8 +91,8 @@ const lineOptions = {
   },
   plugins: {
     legend: {
-      position: "top" as const,  // valid values only
-      align: "center" as const,  // "start" | "center" | "end"
+      position: "top" as const,
+      align: "center" as const,
       labels: {
         color: "#333",
         usePointStyle: true,
@@ -100,7 +101,7 @@ const lineOptions = {
     },
     title: {
       display: true,
-      text: "Line Chart Example",
+      text: "Monthly Electricity Consumption",
       font: {
         size: 18,
         weight: "bold" as const,
@@ -108,7 +109,6 @@ const lineOptions = {
     },
   },
 };
-
 
 const doughnutOptions = {
     responsive: true,
@@ -125,7 +125,7 @@ const doughnutOptions = {
         },
         title: {
             display: true,
-            text: 'Product Category Distribution',
+            text: 'Cost Savings by Appliance Category',
             align: 'start' as const,
             font: {
                 size: 18,
@@ -153,40 +153,40 @@ export default function Homepage() {
                 <div className="mb-6">
                     <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                         <BoltIcon className="w-6 h-6 text-yellow-500" />
-                        Dashboard Overview
+                        Electricity Dashboard
                     </h1>
-                    <p className="text-gray-500 text-sm">Analytics and insights at a glance</p>
+                    <p className="text-gray-500 text-sm">Monitor electricity consumption and savings</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-                    {/* Sales Chart Card */}
+                    {/* Electricity Consumption Chart Card */}
                     <div className={`${cardBackgroundColor} ${cardShadow} ${borderRadius} p-6`}>
                         <Line data={lineData} options={lineOptions} height={300} />
                     </div>
 
-                    {/* Product Distribution Chart Card */}
+                    {/* Cost Savings Chart Card */}
                     <div className={`${cardBackgroundColor} ${cardShadow} ${borderRadius} p-6`}>
                         <Doughnut data={doughnutData} options={doughnutOptions} height={300} />
                     </div>
 
-                    {/* Example of another card (you can add more) */}
+                    {/* Total Money Saved Card */}
                     <div className={`${cardBackgroundColor} ${cardShadow} ${borderRadius} p-6 flex items-center justify-between`}>
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-800 mb-1">Total Revenue</h3>
-                            <p className="text-2xl font-bold text-green-500">$12,580</p>
+                            <h3 className="text-lg font-semibold text-gray-800 mb-1">Total Money Saved</h3>
+                            <p className="text-2xl font-bold text-green-600">Rs 4,520</p>
                         </div>
-                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
 
-                    {/* Another example card */}
+                    {/* Devices Monitored Card */}
                     <div className={`${cardBackgroundColor} ${cardShadow} ${borderRadius} p-6 flex items-center justify-between`}>
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-800 mb-1">New Users</h3>
-                            <p className="text-2xl font-bold text-blue-500">45</p>
+                            <h3 className="text-lg font-semibold text-gray-800 mb-1">Devices Monitored</h3>
+                            <p className="text-2xl font-bold text-blue-600">3</p>
                         </div>
-                        <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20h18M5 19a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2h-4l-2 2-2-2H5z" />
                         </svg>
                     </div>
